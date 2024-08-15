@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+
+"""
+This script reads stdin line by line
+and computes metrics.
+"""
 import sys
 import signal
 
@@ -16,6 +21,7 @@ status_counts = {
 }
 line_count = 0
 
+
 def print_statistics():
     """Print the current statistics."""
     print("File size: {}".format(total_file_size))
@@ -23,10 +29,12 @@ def print_statistics():
         if status_counts[status] > 0:
             print("{}: {}".format(status, status_counts[status]))
 
+
 def signal_handler(sig, frame):
     """Handle the SIGINT signal (CTRL + C) to print statistics and exit."""
     print_statistics()
     sys.exit(0)
+
 
 # Register the signal handler
 signal.signal(signal.SIGINT, signal_handler)
